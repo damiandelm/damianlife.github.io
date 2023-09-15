@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Avatar</title>
+    <style>
+        body { margin: 0; }
+    </style>
+</head>
+<body>
+    <script src="path/to/three.js"></script>
+    <script>
+        // Initialiseren van de scene, camera en renderer
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Een eenvoudige kubus toevoegen als avatar
+        var geometry = new THREE.BoxGeometry();
+        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        var avatar = new THREE.Mesh(geometry, material);
+        scene.add(avatar);
+
+        // De positie van de camera instellen
+        camera.position.z = 5;
+
+        // Een eenvoudige animatie toevoegen
+        var animate = function () {
+            requestAnimationFrame(animate);
+
+            // Avatar laten roteren
+            avatar.rotation.x += 0.01;
+            avatar.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
+    </script>
+</body>
+</html>
